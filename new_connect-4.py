@@ -31,18 +31,33 @@ def display_board():
     print(" |_______|_______|______|______|______|______|______|")
 
 
-def player_move(board, Which_player):
-    move = input("What position does player " + Which_player + " play?")
+def player_move(board, which_player):
+    move = 9
+    move = input("What position does player " + which_player + " play?")
+    while move > 6 or move < 0:
+        print("Please enter a number between 1 and 7")
+        move = input("What position does player " + which_player + " play?")
     lookingforspace = True
-    space_check = 7
-    if Which_player = "1":
+    space_check = len(board)+1
+    if which_player == "1":
         player_code = "x"
-    elif Which_player = "2":
+    elif which_player == "2":
         player_code = "o"
+    else :
+        print ("you need to enter 1 or 2")
+        player_move(board, which_player)
     while lookingforspace:
         space_check -= 1
         if board[move][space_check] == 0:
             pos = space_check
             lookingforspace = False
     board[move][pos] = player_code
+    return board
+
+
+board = create_board(6, 7)
+player_move(board, 1)
+
+
+
     
